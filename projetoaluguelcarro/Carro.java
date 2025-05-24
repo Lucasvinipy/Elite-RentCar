@@ -13,48 +13,56 @@ package projetoaluguelcarro;
  * Classe que representa um Carro disponível para aluguel.
  */
 public class Carro {
+    private int idCarro;            // PK automática
+    private String modelo;          // texto
+    private String marca;           // texto
+    private String placa;           // máscara: AAA-0A00
+    private double diaria;          // valor monetário
+    private String ano;             // limitado a 4 caracteres
+    private String cor;             // texto
+    private String combustivel;     // 1 - Gasolina, 2 - Álcool, 3 - Diesel, 4 - Flex
+    private int quilometragem;      // máscara de milhar (formatação futura)
+    private int idLoja;             // FK de loja
+    private String situacao;        // "Carro já cadastrado", "Carro não cadastrado"
 
-    // Atributos principais do carro
-    private int id;
-    private String modelo;
-    private String marca;
-    private String placa;
-    private int ano;
-    private String cor;
-    private String tipoCombustivel;
-    private double quilometragem;
-    private double precoDiaria;
-    private boolean disponivel;
-    private int idLoja; // ID da loja onde o carro está localizado
-
-    // Construtor padrão
-    public Carro() {}
-
-    // Construtor completo
-    public Carro(int id, String modelo, String marca, String placa, int ano, String cor, 
-                 String tipoCombustivel, double quilometragem, double precoDiaria, 
-                 boolean disponivel, int idLoja) {
-        this.id = id;
+    // Construtor sem ID (para cadastro novo)
+    public Carro(String modelo, String marca, String placa, double diaria, String ano,
+                 String cor, String combustivel, int quilometragem, int idLoja, String situacao) {
         this.modelo = modelo;
         this.marca = marca;
         this.placa = placa;
+        this.diaria = diaria;
         this.ano = ano;
         this.cor = cor;
-        this.tipoCombustivel = tipoCombustivel;
+        this.combustivel = combustivel;
         this.quilometragem = quilometragem;
-        this.precoDiaria = precoDiaria;
-        this.disponivel = disponivel;
         this.idLoja = idLoja;
+        this.situacao = situacao;
     }
 
-    // Getters e Setters para todos os atributos
-
-    public int getId() {
-        return id;
+    // Construtor com ID (para carregar do banco)
+    public Carro(int idCarro, String modelo, String marca, String placa, double diaria, String ano,
+                 String cor, String combustivel, int quilometragem, int idLoja, String situacao) {
+        this.idCarro = idCarro;
+        this.modelo = modelo;
+        this.marca = marca;
+        this.placa = placa;
+        this.diaria = diaria;
+        this.ano = ano;
+        this.cor = cor;
+        this.combustivel = combustivel;
+        this.quilometragem = quilometragem;
+        this.idLoja = idLoja;
+        this.situacao = situacao;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    // Getters e Setters
+    public int getIdCarro() {
+        return idCarro;
+    }
+
+    public void setIdCarro(int idCarro) {
+        this.idCarro = idCarro;
     }
 
     public String getModelo() {
@@ -81,12 +89,22 @@ public class Carro {
         this.placa = placa;
     }
 
-    public int getAno() {
+    public double getDiaria() {
+        return diaria;
+    }
+
+    public void setDiaria(double diaria) {
+        this.diaria = diaria;
+    }
+
+    public String getAno() {
         return ano;
     }
 
-    public void setAno(int ano) {
-        this.ano = ano;
+    public void setAno(String ano) {
+        if (ano.length() <= 4) {
+            this.ano = ano;
+        }
     }
 
     public String getCor() {
@@ -97,36 +115,20 @@ public class Carro {
         this.cor = cor;
     }
 
-    public String getTipoCombustivel() {
-        return tipoCombustivel;
+    public String getCombustivel() {
+        return combustivel;
     }
 
-    public void setTipoCombustivel(String tipoCombustivel) {
-        this.tipoCombustivel = tipoCombustivel;
+    public void setCombustivel(String combustivel) {
+        this.combustivel = combustivel;
     }
 
-    public double getQuilometragem() {
+    public int getQuilometragem() {
         return quilometragem;
     }
 
-    public void setQuilometragem(double quilometragem) {
+    public void setQuilometragem(int quilometragem) {
         this.quilometragem = quilometragem;
-    }
-
-    public double getPrecoDiaria() {
-        return precoDiaria;
-    }
-
-    public void setPrecoDiaria(double precoDiaria) {
-        this.precoDiaria = precoDiaria;
-    }
-
-    public boolean isDisponivel() {
-        return disponivel;
-    }
-
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
     }
 
     public int getIdLoja() {
@@ -137,8 +139,26 @@ public class Carro {
         this.idLoja = idLoja;
     }
 
-    // Método auxiliar para exibir status do carro
-    public String getStatus() {
-        return disponivel ? "Disponível" : "Alugado";
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
+    }
+
+    // Método utilitário para exibir os dados
+    public void exibirCarro() {
+        System.out.println("ID: " + idCarro);
+        System.out.println("Modelo: " + modelo);
+        System.out.println("Marca: " + marca);
+        System.out.println("Placa: " + placa);
+        System.out.println("Diária: R$ " + diaria);
+        System.out.println("Ano: " + ano);
+        System.out.println("Cor: " + cor);
+        System.out.println("Combustível: " + combustivel);
+        System.out.println("Quilometragem: " + String.format("%,d km", quilometragem));
+        System.out.println("ID Loja: " + idLoja);
+        System.out.println("Situação: " + situacao);
     }
 }
