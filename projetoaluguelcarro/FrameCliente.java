@@ -1,8 +1,20 @@
-/*
+package projetoaluguelcarro;
+
+
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package projetoaluguelcarro;
+
+import javax.swing.JOptionPane;
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -59,6 +71,7 @@ public class FrameCliente extends javax.swing.JFrame {
         jFormattedTextField4 = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
         jFormattedTextField5 = new javax.swing.JFormattedTextField();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,7 +89,11 @@ public class FrameCliente extends javax.swing.JFrame {
 
         jLabel1.setText("Nome Completo");
 
-        jTextField2.setText("jTextField2");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("CPF");
 
@@ -86,13 +103,21 @@ public class FrameCliente extends javax.swing.JFrame {
 
         jLabel5.setText("email");
 
-        jTextField6.setText("jTextField6");
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("cep");
 
         jLabel7.setText("CNH");
 
-        jTextField8.setText("jTextField8");
+        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField8ActionPerformed(evt);
+            }
+        });
 
         sexo.add(jRadioButton1);
         jRadioButton1.setText("Masculino");
@@ -104,6 +129,11 @@ public class FrameCliente extends javax.swing.JFrame {
 
         sexo.add(jRadioButton2);
         jRadioButton2.setText("Feminino");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         sexo.add(jRadioButton3);
         jRadioButton3.setText("Outros");
@@ -121,8 +151,18 @@ public class FrameCliente extends javax.swing.JFrame {
         });
 
         jButton2.setText("Editar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Deletar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Pesquisar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +175,11 @@ public class FrameCliente extends javax.swing.JFrame {
 
         jLabel9.setText("SItuação");
 
-        jTextField10.setText("jTextField10");
+        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField10ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -155,18 +199,33 @@ public class FrameCliente extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField1ActionPerformed(evt);
+            }
+        });
 
         try {
             jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField2ActionPerformed(evt);
+            }
+        });
 
         try {
             jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField3ActionPerformed(evt);
+            }
+        });
 
         try {
             jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
@@ -186,6 +245,18 @@ public class FrameCliente extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField5ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Listar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -232,8 +303,8 @@ public class FrameCliente extends javax.swing.JFrame {
                                             .addComponent(jLabel8))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                             .addGap(164, 164, 164)
-                                            .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(253, 253, 253)
+                                            .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(168, 168, 168)
                                             .addComponent(jLabel9)))
                                     .addGap(0, 0, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,86 +329,92 @@ public class FrameCliente extends javax.swing.JFrame {
                                     .addComponent(jRadioButton3))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(37, 37, 37)
-                                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGap(29, 29, 29)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1213, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jButton4)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1213, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(31, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addGap(317, 317, 317))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(58, 58, 58)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel6)
-                                .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(21, 21, 21)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7)
-                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(82, 82, 82))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(58, 58, 58)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(21, 21, 21)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(82, 82, 82))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(10, 10, 10)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4)
-                                .addGap(6, 6, 6)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel4)
+                                        .addGap(6, 6, 6)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel5)
-                                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
-                                        .addComponent(jButton1)))
-                                .addGap(27, 27, 27)
-                                .addComponent(jButton2)
-                                .addGap(27, 27, 27)
-                                .addComponent(jButton3)
-                                .addGap(29, 29, 29)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jRadioButton1)
-                                    .addComponent(jLabel10)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jRadioButton2)
-                                .addComponent(jRadioButton3)))
-                        .addGap(27, 27, 27)))
-                .addGap(36, 36, 36)
-                .addComponent(jButton4)
-                .addGap(18, 18, 18)
+                                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(20, 20, 20)
+                                                .addComponent(jButton1)))
+                                        .addGap(27, 27, 27)
+                                        .addComponent(jButton2)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(jButton3)
+                                        .addGap(29, 29, 29)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jRadioButton1)
+                                            .addComponent(jLabel10)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jRadioButton2)
+                                        .addComponent(jRadioButton3)))
+                                .addGap(27, 27, 27)))
+                        .addGap(36, 36, 36)
+                        .addComponent(jButton4)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5)
+                        .addGap(28, 28, 28)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(292, 292, 292))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(349, 349, 349))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -373,16 +450,318 @@ public class FrameCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
+        String nome = jTextField2.getText();
+        String cpf = jFormattedTextField1.getText();
+        
+        String telefone = jFormattedTextField3.getText();
+        String email = jTextField6.getText();
+        String cep = jFormattedTextField4.getText();
+        String cnh = jTextField8.getText();
+        String sexo = "";
+        if (jRadioButton1.isSelected()){
+            sexo = "Masculino";
+        }else if (jRadioButton2.isSelected()){
+            sexo = "Feminino";
+        }else if (jRadioButton3.isSelected()) {
+            sexo = "    outros";
+        }
+        
+        String data = jFormattedTextField2.getText();
+        
+        
+        try {
+            // Converter a data para formato do SQL
+            
+            java.util.Date dataUtil = new SimpleDateFormat("dd/MM/yyyy").parse(data);
+            java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
+
+          
+
+            // Conectar ao banco
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Projetoelite", "root", "12345678");
+
+            Statement stmt = conn.createStatement();
+
+            // Criar SQL
+            String sql = "INSERT INTO cliente (nome_completo, cpf, data_nascimento, telefone, email, cep, cnh, sexo) VALUES (" +
+            "'" + nome + "', " +
+            "'" + cpf + "', " +
+            "'" + dataSql + "', " +
+            "'" + telefone + "', " +
+            "'" + email + "', " +
+            "'" + cep + "', " +
+            "'" + cnh + "', " +
+            "'" + sexo + "')";
+
+            // Executar
+            stmt.executeUpdate(sql);
+            stmt.close();
+            conn.close();
+            
+            JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+        
+        } catch (Exception e ) {
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar: " + e.getMessage());
+        }
+        
+        jTextField2.setText("");
+        jFormattedTextField1.setText("");
+        
+        jFormattedTextField3.setText("");
+        jTextField6.setText("");
+        jFormattedTextField4.setText("");
+        jTextField8.setText("");
+        jFormattedTextField2.setText("");
+        
+        
+        
+      
+                    
+               
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+         // TODO add your handling code here:
+         try {
+             
+            //conexao
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Projetoelite", "root", "12345678");
+             
+            // Captura o CPF do campo formatado
+            String cpf = jFormattedTextField5.getText();
+            
+            String query = "SELECT * FROM cliente WHERE cpf = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, cpf);  
+            ResultSet rs = pst.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0); // Limpa a tabela
+            
+            
+           
+
+            // Executa a consulta
+            
+
+             if (rs.next()) {
+             // Se encontrar cliente, limpa a tabela e insere os dados encontrados
+            
+
+            Object[] row = {
+            rs.getInt("id_Cliente"),
+            rs.getString("nome_Completo"),
+            rs.getString("cpf"),
+            rs.getString("data_Nascimento"),
+            rs.getString("telefone"),
+            rs.getString("email"),
+            rs.getString("cep"),
+            rs.getString("cnh"),
+            rs.getString("sexo"),
+            rs.getString("situacao")
+        };
+            model.addRow(row);
+
+        // Mostra a situação no jTextField10
+            jTextField10.setText("Usuário cadastrado");
+
+        // Preenche os campos de texto acima com os dados encontrados
+            jTextField2.setText(rs.getString("nome_Completo"));
+            jFormattedTextField1.setText(rs.getString("cpf"));
+            jFormattedTextField2.setText(rs.getString("data_Nascimento"));
+            jFormattedTextField3.setText(rs.getString("telefone"));
+            jTextField6.setText(rs.getString("email"));
+            jFormattedTextField4.setText(rs.getString("cep"));
+            jTextField8.setText(rs.getString("cnh"));
+         
+
+    } else {
+        
+            jTextField10.setText("Usuário não cadastrado");
+
+ 
+    }
+
+            rs.close();
+            pst.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            jTextField10.setText("Erro ao buscar cliente");
+        }
+   
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jFormattedTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField4ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+
+    private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField3ActionPerformed
+
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        listarClientes();
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField10ActionPerformed
+
+    private void jFormattedTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+ 
+        try {
+        // Conexão direta
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection connection = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/Projetoelite", "root", "12345678"
+        );
+
+        // Query
+        String sql = "UPDATE cliente SET nome_Completo = ?, data_Nascimento = ?, telefone = ?, email = ?, cep = ?, cnh = ? WHERE cpf = ?";
+        PreparedStatement pst = connection.prepareStatement(sql);
+
+        // 1 - nome
+        pst.setString(1, jTextField2.getText().trim());
+
+        // 2 - data_Nascimento
+        String data_Nascimento = jFormattedTextField2.getText().trim();
+        if (data_Nascimento.replaceAll("[/\\s]", "").isEmpty()) {
+            pst.setNull(2, java.sql.Types.DATE);
+        } else {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate data = LocalDate.parse(data_Nascimento, formatter);
+            pst.setDate(2, java.sql.Date.valueOf(data));
+        }
+
+        // 3 - telefone
+        pst.setString(3, jFormattedTextField3.getText().trim());
+
+        // 4 - email
+        pst.setString(4, jTextField6.getText().trim());
+
+        // 5 - cep
+        pst.setString(5, jFormattedTextField4.getText().trim());
+
+        // 6 - cnh
+        pst.setString(6, jTextField8.getText().trim());
+
+        // 7 - cpf (WHERE)
+        pst.setString(7, jFormattedTextField1.getText().trim());
+
+        int linhasAfetadas = pst.executeUpdate();
+
+        if (linhasAfetadas > 0) {
+            jTextField10.setText("Usuário atualizado com sucesso!");
+        } else {
+            jTextField10.setText("Nenhum usuário encontrado com esse CPF.");
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        jTextField10.setText("Erro: " + e.getMessage());
+    }
+
+        
+            
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/projetoelite", "root", "12345678");
+            
+            String sql = "DELETE FROM cliente WHERE cpf = ?";
+            PreparedStatement pst = connection.prepareStatement(sql);
+            
+            String cpf = jFormattedTextField1.getText().trim();
+            pst.setString(1 , cpf);
+            
+            int linhasAfetadas = pst.executeUpdate();
+            
+            if(linhasAfetadas > 0  ){
+                jTextField10.setText("Cliente deletado");
+            }else {
+                jTextField10.setText("Nenhum cliente com esse cpf");
+            }
+            }catch(Exception e ){
+                jTextField10.setText("erro " + e.getMessage());
+            }
+            
+        
+   
+    }//GEN-LAST:event_jButton3ActionPerformed
+    
+    
+    public void listarClientes() {
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Projetoelite", "root", "12345678");
+
+        String sql = "SELECT * FROM cliente";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0); // limpa a tabela antes de preencher
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{
+                rs.getInt("id_cliente"),
+                rs.getString("nome_completo"),
+                rs.getString("cpf"),
+                rs.getString("data_nascimento"),
+                rs.getString("telefone"),
+                rs.getString("email"),
+                rs.getString("cep"),
+                rs.getString("cnh"),
+                rs.getString("sexo"),
+                rs.getString("situacao")
+            });
+        }
+
+        rs.close();
+        stmt.close();
+        conn.close();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Erro ao listar clientes: " + e.getMessage());
+    }
+}
 
     
     
@@ -426,6 +805,7 @@ public class FrameCliente extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;

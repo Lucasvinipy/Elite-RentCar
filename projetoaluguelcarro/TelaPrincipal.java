@@ -145,6 +145,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         FrameCliente frameCliente = new FrameCliente();
         frameCliente.setVisible(true);
         
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
