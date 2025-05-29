@@ -1,0 +1,1 @@
+jTextField7.setText("");jTextField7.setText("");

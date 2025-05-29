@@ -4,6 +4,17 @@
  */
 package projetoaluguelcarro;
 
+import javax.swing.JOptionPane;
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author User
@@ -89,7 +100,11 @@ public class FrameLoja extends javax.swing.JFrame {
 
         jLabel1.setText("Nome Fantasia");
 
-        jTextField2.setText("jTextField2");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("CNPJ");
 
@@ -99,13 +114,21 @@ public class FrameLoja extends javax.swing.JFrame {
 
         jLabel5.setText("Responsavel Loja");
 
-        jTextField6.setText("jTextField6");
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Data Abertura");
 
         jLabel7.setText("EMAIl");
 
-        jTextField8.setText("jTextField8");
+        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField8ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Tipo de Loja");
 
@@ -141,7 +164,11 @@ public class FrameLoja extends javax.swing.JFrame {
 
         jLabel10.setText("situação");
 
-        jTextField11.setText("jTextField11");
+        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField11ActionPerformed(evt);
+            }
+        });
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -156,7 +183,7 @@ public class FrameLoja extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable2);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 - Matriz", "2 - filial", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 -Matriz", "2-Filial", " " }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -168,30 +195,55 @@ public class FrameLoja extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField1ActionPerformed(evt);
+            }
+        });
 
         try {
             jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField2ActionPerformed(evt);
+            }
+        });
 
         try {
             jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField3ActionPerformed(evt);
+            }
+        });
 
         try {
             jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField4ActionPerformed(evt);
+            }
+        });
 
         try {
             jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField5ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Listar todos");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -249,9 +301,9 @@ public class FrameLoja extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel9)
-                                .addGap(28, 28, 28)
-                                .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(226, 226, 226)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(89, 89, 89)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,15 +327,16 @@ public class FrameLoja extends javax.swing.JFrame {
                                         .addComponent(jLabel10)
                                         .addGap(20, 20, 20)))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jFormattedTextField4)
+                                            .addGap(10, 10, 10)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(16, 16, 16)
-                                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jFormattedTextField4)
-                                        .addGap(10, 10, 10)))
+                                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton5)
                                 .addGap(173, 173, 173))))
@@ -390,14 +443,153 @@ public class FrameLoja extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+            try {
+        // Conexão direta
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection connection = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/projetoelite", "root", "12345678"
+        );
+
+        // Query
+        String sql = "UPDATE loja SET nome_fantasia = ?, cnpj = ?, cep = ?, telefone = ?, email = ?, data_abertura = ? , tipo_loja = ?, responsavel_loja = ? WHERE cnpj = ?";
+        PreparedStatement pst = connection.prepareStatement(sql);
+
+        // 1 - nome
+        pst.setString(1, jTextField2.getText().trim());
+        
+        // 2 - cnpj
+        pst.setString(2, jFormattedTextField1.getText().trim());
+        
+        // 3 - cep
+        pst.setString(3, jFormattedTextField2.getText().trim());
+        
+         // 4 - telefone
+        pst.setString(4, jFormattedTextField3.getText().trim());
+        
+        // 5 - email
+        pst.setString(5, jTextField6.getText().trim());
+        
+        // 6 - data abertura
+        String data_abertura = jFormattedTextField4.getText().trim();
+        if (data_abertura.replaceAll("[/\\s]", "").isEmpty()) {
+            pst.setNull(6, java.sql.Types.DATE);
+        } else {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate data = LocalDate.parse(data_abertura, formatter);
+            pst.setDate(6, java.sql.Date.valueOf(data));
+        }
+        
+         // 7 - tipo loja
+        pst.setString(7, jComboBox1.getSelectedItem().toString());
+
+        // 8 - responsavel loja
+        pst.setString(8, jTextField8.getText().trim());
+        
+         // 9 - cnpj where
+        pst.setString(9, jFormattedTextField1.getText().trim());
+
+        
+
+        int linhasAfetadas = pst.executeUpdate();
+
+        if (linhasAfetadas > 0) {
+            jTextField11.setText("LOJA ALterada com sucesso!");
+        } else {
+            jTextField11.setText("Nenhuma Loja encontrada com esse Cnpj.");
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        jTextField11.setText("Erro: " + e.getMessage());
+    }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+          try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/projetoelite", "root", "12345678");
+            
+            String sql = "DELETE FROM loja WHERE cnpj = ?";
+            PreparedStatement pst = connection.prepareStatement(sql);
+            
+            String cnpj = jFormattedTextField1.getText().trim();
+            pst.setString(1 , cnpj);
+            
+            int linhasAfetadas = pst.executeUpdate();
+            
+            if(linhasAfetadas > 0  ){
+                jTextField11.setText("Loja deletada");
+            }else {
+                jTextField11.setText("Nenhuma Loja com esse cnpj");
+            }
+            }catch(Exception e ){
+                jTextField11.setText("erro " + e.getMessage());
+            }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        String nome_fantasia = jTextField2.getText();
+        String cnpj = jFormattedTextField1.getText();
+        String cep =jFormattedTextField2.getText();
+        String telefone = jFormattedTextField3.getText();
+        String email = jTextField6.getText();
+        String data_abertura =jFormattedTextField4.getText();
+        String tipo_loja = jComboBox1.getItemAt(WIDTH);
+        String responsavel_loja = jTextField8.getText();
+        
+        try {
+            // Converter a data para formato do SQL
+            
+            java.util.Date dataUtil = new SimpleDateFormat("dd/MM/yyyy").parse(data_abertura);
+            java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
+
+          
+
+            // Conectar ao banco
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Projetoelite", "root", "12345678");
+
+            Statement stmt = conn.createStatement();
+
+            // Criar SQL
+            String sql = "INSERT INTO loja (nome_fantasia, cnpj, cep, telefone, email, data_abertura, tipo_loja, responsavel_loja) VALUES (" +
+            "'" + nome_fantasia + "', " +
+            "'" + cnpj + "', " +
+            "'" + cep + "', " +        
+            "'" + telefone + "', " +
+            "'" + email + "', " +
+            "'" + dataSql + "', " +
+            "'" + tipo_loja + "', " +
+            "'" + responsavel_loja  + "')";
+            
+
+            // Executar
+            stmt.executeUpdate(sql);
+            stmt.close();
+            conn.close();
+            
+            JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+        
+        } catch (Exception e ) {
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar: " + e.getMessage());
+        }
+        
+        jTextField2.setText("");
+        jFormattedTextField1.setText("");
+        jFormattedTextField2.setText("");
+        jFormattedTextField3.setText("");
+        jTextField6.setText("");
+        jFormattedTextField4.setText("");
+        jComboBox1.setSelectedIndex(-1);
+        jTextField8.setText("");
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -406,6 +598,90 @@ public class FrameLoja extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        
+        try {
+             
+            //conexao
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Projetoelite", "root", "12345678");
+             
+            // Captura o CPF do campo formatado
+            String cnpj = jFormattedTextField5.getText();
+            
+            String query = "SELECT * FROM loja WHERE cnpj = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, cnpj);  
+            ResultSet rs = pst.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+            model.setRowCount(0); // Limpa a tabela
+            
+            
+           
+
+            // Executa a consulta
+            
+
+             if (rs.next()) {
+             // Se encontrar cliente, limpa a tabela e insere os dados encontrados
+            
+
+            Object[] row = {
+            rs.getInt("id_loja"),
+            rs.getString("nome_fantasia"),
+            rs.getString("cnpj"),
+            rs.getString("cep"),
+            rs.getString("telefone"),
+            rs.getString("email"),
+            rs.getString("data_abertura"),
+            rs.getString("tipo_loja"),
+            rs.getString("responsavel_loja"),
+            rs.getString("situacao")
+        };
+            model.addRow(row);
+
+        // Mostra a situação no jTextField10
+            jTextField11.setText("Loja Cadastrada");
+
+        // Preenche os campos de texto acima com os dados encontrados
+            jTextField2.setText(rs.getString("nome_fantasia"));
+            jFormattedTextField1.setText(rs.getString("cnpj"));
+            jFormattedTextField2.setText(rs.getString("cep"));
+            jFormattedTextField3.setText(rs.getString("telefone"));
+            jTextField6.setText(rs.getString("email"));
+            Date dataAbertura = rs.getDate("data_abertura");
+            if (dataAbertura != null){
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                jFormattedTextField4.setText(sdf.format(dataAbertura));
+                
+            }else {
+                jFormattedTextField4.setText("");
+            }
+            jComboBox1.setSelectedItem("tipo_loja");
+            jTextField8.setText(rs.getString("responsavel_loja"));
+            
+         
+
+    } else {
+        
+            jTextField11.setText("Loja não cadastrada");
+            
+    }
+            rs.close();
+            pst.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            jTextField11.setText("Erro ao buscar LOJA");
+        }
+        
+   
+        jFormattedTextField5.setText("");
+        
+        
+
+               
+        
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -414,8 +690,84 @@ public class FrameLoja extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        listarClientes();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+
+
+    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField11ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+
+    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+
+    private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField3ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jFormattedTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField4ActionPerformed
+
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8ActionPerformed
+
+    private void jFormattedTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField5ActionPerformed
+    
+        public void listarClientes() {
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Projetoelite", "root", "12345678");
+
+        String sql = "SELECT * FROM loja";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+
+        DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
+        modelo.setRowCount(0); // limpa a tabela antes de preencher
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{
+                rs.getInt("id_loja"),
+                rs.getString("nome_fantasia"),
+                rs.getString("cnpj"),
+                rs.getString("cep"),
+                rs.getString("telefone"),
+                rs.getString("email"),
+                rs.getString("data_abertura"),
+                rs.getString("tipo_loja"),
+                rs.getString("responsavel_loja"),
+                rs.getString("situacao")
+            });
+        }
+
+        rs.close();
+        stmt.close();
+        conn.close();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Erro ao listar clientes: " + e.getMessage());
+    }
+}
+
+        
     /**
      * @param args the command line arguments
      */
@@ -450,6 +802,7 @@ public class FrameLoja extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler1;

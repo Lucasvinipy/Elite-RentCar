@@ -553,7 +553,7 @@ public class FrameCliente extends javax.swing.JFrame {
             rs.getInt("id_Cliente"),
             rs.getString("nome_Completo"),
             rs.getString("cpf"),
-            rs.getString("data_Nascimento"),
+            rs.getString("data_nascimento"),
             rs.getString("telefone"),
             rs.getString("email"),
             rs.getString("cep"),
@@ -569,7 +569,14 @@ public class FrameCliente extends javax.swing.JFrame {
         // Preenche os campos de texto acima com os dados encontrados
             jTextField2.setText(rs.getString("nome_Completo"));
             jFormattedTextField1.setText(rs.getString("cpf"));
-            jFormattedTextField2.setText(rs.getString("data_Nascimento"));
+            Date dataAbertura = rs.getDate("data_nascimento");
+            if (dataAbertura != null){
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                jFormattedTextField2.setText(sdf.format(dataAbertura));
+                
+            }else {
+                jFormattedTextField2.setText("");
+            }
             jFormattedTextField3.setText(rs.getString("telefone"));
             jTextField6.setText(rs.getString("email"));
             jFormattedTextField4.setText(rs.getString("cep"));
