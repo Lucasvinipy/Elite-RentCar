@@ -575,6 +575,8 @@ public class FrameLoja extends javax.swing.JFrame {
             conn.close();
             
             JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+            
+            
         
         } catch (Exception e ) {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar: " + e.getMessage());

@@ -64,7 +64,6 @@ public class FrameCarro extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -78,6 +77,7 @@ public class FrameCarro extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -173,18 +173,27 @@ public class FrameCarro extends javax.swing.JFrame {
         });
 
         jButton2.setText("Editar");
-
-        jButton3.setText("Deletar");
-
-        jButton4.setText("Pesquisar");
-
-        jLabel8.setText("Placa");
-
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
+
+        jButton3.setText("Deletar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Pesquisar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Placa");
 
         jLabel9.setText("Situação");
 
@@ -210,6 +219,11 @@ public class FrameCarro extends javax.swing.JFrame {
         jLabel10.setText("Diaria");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1-Gasolina", "2-Álcool", "3-DIesel", "4-FLEx ", " " }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         try {
             jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
@@ -252,6 +266,17 @@ public class FrameCarro extends javax.swing.JFrame {
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
+            }
+        });
+
+        try {
+            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField2ActionPerformed(evt);
             }
         });
 
@@ -321,8 +346,9 @@ public class FrameCarro extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
-                        .addGap(31, 31, 31)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -402,10 +428,10 @@ public class FrameCarro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5))
+                    .addComponent(jButton5)
+                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -427,89 +453,83 @@ public class FrameCarro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            // TODO add your handling code here:
-        
-        String modelo = jTextField2.getText();
-        String marca = jTextField3.getText();
-        String placa =jFormattedTextField1.getText();
-        double diaria = Double.parseDouble(jTextField4.getText());
-        String ano = jTextField5.getText();
-        String cor =jTextField6.getText();
-        String tipo_combustivel = jComboBox1.getSelectedItem().toString();
-        int quilometragem =Integer.parseInt(jTextField7.getText());
-        int id_loja =Integer.parseInt(jTextField8.getText());
-        
-        String sqloja = "SELECT COUNT(*) FROM  loja where id_loja = ?";
+     
+    String modelo = jTextField2.getText();
+    String marca = jTextField3.getText();
+    String placa = jFormattedTextField1.getText();
+    double diaria = Double.parseDouble(jTextField4.getText());
+    String ano = jTextField5.getText();
+    String cor = jTextField6.getText();
+    String tipo_combustivel = jComboBox1.getSelectedItem().toString();
+    int quilometragem = Integer.parseInt(jTextField7.getText());
+    int id_loja = Integer.parseInt(jTextField8.getText());
+
+    try {
+        // Conectar ao banco
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Projetoelite", "root", "12345678");
+
+        // Verificar se a loja existe
+        String sqlLoja = "SELECT COUNT(*) FROM loja WHERE id_loja = ?";
         PreparedStatement pstLoja = conn.prepareStatement(sqlLoja);
-        pstLoja.setInt(1,id_loja);
+        pstLoja.setInt(1, id_loja);
         ResultSet rs = pstLoja.executeQuery();
-        
-        if (rs.next() && rs.getInt(1) == 0){
-            jTextField7.setText("Carro pertence a uma loja nao existente");
-            jTextField7.requestFocus();
+
+        if (rs.next() && rs.getInt(1) == 0) {
+            
+            jTextField10.setText("Carro pertence a uma loja nao existente");
+            jTextField8.requestFocus();
             return;
         }
-        
-        
-        
-        try {
-            // Converter a data para formato do SQL
-            
-            
-          
 
-            // Conectar ao banco
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            
-            Statement stmt = conn.createStatement();
+        // Inserir o carro
+        String sql = "INSERT INTO carro (modelo, marca, placa, diaria, ano, cor, tipo_combustivel, quilometragem, id_loja) " +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setString(1, modelo);
+        pst.setString(2, marca);
+        pst.setString(3, placa);
+        pst.setDouble(4, diaria);
+        pst.setString(5, ano);
+        pst.setString(6, cor);
+        pst.setString(7, tipo_combustivel);
+        pst.setInt(8, quilometragem);
+        pst.setInt(9, id_loja);
 
-            // Criar SQL
-            String sql = "INSERT INTO carro (modelo, marca, placa , diaria, ano, cor, tipo_combustivel, quilometragem , id_loja) VALUES (" +
-            "'" + modelo + "', " +
-            "'" + marca + "', " +
-            "'" + placa + "', " +        
-            "'" + diaria + "', " +
-            "'" + ano + "', " +
-            "'" + cor + "', " +
-            "'" + tipo_combustivel + "', " +
-            "'" + quilometragem + "', " +
-            "'" + id_loja  + "')";
-            
+        pst.executeUpdate();
 
-            // Executar
-            stmt.executeUpdate(sql);
-            stmt.close();
-            conn.close();
-            
-            JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+        pstLoja.close();
+        pst.close();
+        conn.close();
+
+       
+        jTextField10.setText("Carro Cadastrado com sucesso");
+
+    } catch (Exception e) {
         
-        } catch (Exception e ) {
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar: " + e.getMessage());
-        }
-        
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jFormattedTextField1.setText("");
-        jTextField4.setText("");
-        jTextField5.setText("");
-        jTextField6.setText("");
-        jComboBox1.setSelectedIndex(-1);
-        jTextField7.setText("");
-        jTextField8.setText("");
-        
+        jTextField10.setText("erro" + e.getMessage());
+        e.printStackTrace();
+    }
+
+    // Limpar os campos
+    jTextField2.setText("");
+    jTextField3.setText("");
+    jFormattedTextField1.setText("");
+    jTextField4.setText("");
+    jTextField5.setText("");
+    jTextField6.setText("");
+    jComboBox1.setSelectedIndex(-1);
+    jTextField7.setText("");
+    jTextField8.setText("");
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        listarClientes();
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -548,6 +568,223 @@ public class FrameCarro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField8ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+             
+            //conexao
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Projetoelite", "root", "12345678");
+             
+            // Captura a placa  do campo formatado
+            String placa = jFormattedTextField2.getText();
+            
+            String query = "SELECT * FROM carro WHERE placa = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, placa);  
+            ResultSet rs = pst.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) jTable4.getModel();
+            model.setRowCount(0); // Limpa a tabela
+            
+            
+           
+
+            // Executa a consulta
+            
+
+             if (rs.next()) {
+             // Se encontrar cliente, limpa a tabela e insere os dados encontrados
+            
+
+            Object[] row = {
+            rs.getInt("id_carro"),
+            rs.getString("modelo"),
+            rs.getString("marca"),
+            rs.getString("placa"),
+            rs.getString("diaria"),
+            rs.getString("ano"),
+            rs.getString("cor"),
+            rs.getString("tipo_combustivel"),
+            rs.getString("quilometragem"),
+            rs.getString("id_loja"),
+            rs.getString("situacao")
+        };
+            model.addRow(row);
+
+        // Mostra a situação no jTextField10
+            jTextField10.setText("Carro Ja existente");
+
+        // Preenche os campos de texto acima com os dados encontrados
+            jTextField2.setText(rs.getString("modelo"));
+            jTextField3.setText(rs.getString("marca"));
+            jFormattedTextField1.setText(rs.getString("placa"));
+            jTextField4.setText(rs.getString("diaria"));
+            jTextField5.setText(rs.getString("ano"));
+            jTextField6.setText(rs.getString("Cor"));
+            jComboBox1.setSelectedItem("tipo_combustivel");
+            jTextField7.setText(rs.getString("quilometragem"));
+            jTextField8.setText(rs.getString("id_loja"));
+            
+         
+
+    } else {
+        
+            jTextField10.setText("Carro não cadastrado");
+            
+    }
+            rs.close();
+            pst.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            jTextField10.setText("Carro Encontrado");
+        }
+        
+   
+        jFormattedTextField2.setText("");
+        
+        
+
+               
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+            try {
+        // Conexão direta
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection connection = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/projetoelite", "root", "12345678"
+        );
+
+        // Query
+        String sql = "UPDATE carro SET modelo = ?, marca = ?, placa = ?, diaria = ?, ano = ?, cor = ? , tipo_combustivel = ?, quilometragem = ?, id_loja = ? WHERE placa = ?";
+        PreparedStatement pst = connection.prepareStatement(sql);
+
+        // 1 - modelo
+        pst.setString(1, jTextField2.getText().trim());
+        
+        // 2 - marca
+        pst.setString(2, jTextField3.getText().trim());
+        
+        // 3 - placa
+        pst.setString(3, jFormattedTextField1.getText().trim());
+        
+         // 4 - Diaria
+        pst.setString(4, jTextField4.getText().trim());
+        
+        // 5 - ano
+        pst.setString(5, jTextField5.getText().trim());
+        
+        // 6 - cor
+        pst.setString(6, jTextField6.getText().trim());
+        
+        
+         // 7 - tipo_combustivel
+        pst.setString(7, jComboBox1.getSelectedItem().toString());
+
+        // 8 - quilometragem
+        pst.setString(8, jTextField7.getText().trim());
+        
+        // 9 - id_loja
+        pst.setString(9, jTextField8.getText().trim());
+       
+        
+         // 10 - placa where
+        pst.setString(10, jFormattedTextField1.getText().trim());
+
+        
+
+        int linhasAfetadas = pst.executeUpdate();
+
+        if (linhasAfetadas > 0) {
+            jTextField10.setText("Carro Alterado com sucesso!");
+        } else {
+            jTextField10.setText("Nenhum Carro encontrada com essa Placa.");
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        jTextField10.setText("Erro: " + e.getMessage());
+    }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/projetoelite", "root", "12345678");
+            
+            String sql = "DELETE FROM carro WHERE placa = ?";
+            PreparedStatement pst = connection.prepareStatement(sql);
+            
+            String placa = jFormattedTextField1.getText().trim();
+            pst.setString(1 , placa);
+            
+            int linhasAfetadas = pst.executeUpdate();
+            
+            if(linhasAfetadas > 0  ){
+                jTextField10.setText("carro deletado");
+            }else {
+                jTextField10.setText("Nenhum Carro com essa placa");
+            }
+            }catch(Exception e ){
+                jTextField10.setText("erro " + e.getMessage());
+            }
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+         public void listarClientes() {
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Projetoelite", "root", "12345678");
+
+        String sql = "SELECT * FROM Carro";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+
+        DefaultTableModel modelo = (DefaultTableModel) jTable4.getModel();
+        modelo.setRowCount(0); // limpa a tabela antes de preencher
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{
+                rs.getInt("id_carro"),
+                rs.getString("modelo"),
+                rs.getString("marca"),
+                rs.getString("placa"),
+                rs.getString("diaria"),
+                rs.getString("ano"),
+                rs.getString("cor"),
+                rs.getString("tipo_combustivel"),
+                rs.getString("quilometragem"),
+                rs.getString("id_loja"),
+                rs.getString("situacao")
+            });
+        }
+
+        rs.close();
+        stmt.close();
+        conn.close();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Erro ao listar clientes: " + e.getMessage());
+    }
+}
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -591,6 +828,7 @@ public class FrameCarro extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -625,6 +863,5 @@ public class FrameCarro extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }
